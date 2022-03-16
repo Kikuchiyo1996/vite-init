@@ -12,6 +12,15 @@
     "build:prod": "vue-tsc --noEmit && vite build --mode production",
     "prepare": "husky install"
   },
+  "lint-staged": {
+    "*.{js,vue,ts,jsx,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{html,css,less,scss,md}": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "axios": "^0.26.1",
     "element-plus": "^2.1.3",
@@ -25,6 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "@typescript-eslint/parser": "^5.15.0",
     "@vitejs/plugin-vue": "^2.2.4",
+    "commitizen": "^4.2.4",
     "eslint": "^8.11.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-alias": "^1.1.2",
