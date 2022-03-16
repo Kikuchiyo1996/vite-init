@@ -12,6 +12,11 @@
     "build:prod": "vue-tsc --noEmit && vite build --mode production",
     "prepare": "husky install"
   },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
   "lint-staged": {
     "*.{js,vue,ts,jsx,tsx}": [
       "eslint --fix"
@@ -19,11 +24,6 @@
     "*.{html,css,less,scss,md}": [
       "eslint --fix"
     ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   },
   "dependencies": {
     "axios": "^0.26.1",
@@ -39,7 +39,7 @@
     "@typescript-eslint/parser": "^5.15.0",
     "@vitejs/plugin-vue": "^2.2.4",
     "commitizen": "^4.2.4",
-    "cz-conventional-changelog": "^3.3.0",
+    "cz-git": "^1.2.1",
     "eslint": "^8.11.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-alias": "^1.1.2",
