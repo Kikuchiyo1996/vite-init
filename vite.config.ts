@@ -12,7 +12,9 @@ export default defineConfig(({ mode }) => {
 	 * ! 环境变量
 	 */
 	const diffMode = loadEnv(mode, process.cwd())
-	const isProduction = mode !== 'development'
+	const isDev = mode === 'development'
+	console.log(mode, isDev)
+
 	return {
 		base: diffMode.VITE_APP_PUBLIC_PATH,
 		plugins: [
@@ -65,14 +67,9 @@ export default defineConfig(({ mode }) => {
 			 * ! 自动导入组件
 			 */
 			AutoImport({
-				include: [
-					/\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
-					/\.vue$/,
-					/\.vue\?vue/, // .vue
-					/\.md$/, // .md
-				],
+				include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
 				dts: 'src/@types/auto-imports.d.ts',
-				imports: ['vue', 'vue-router'],
+				imports: ['vue', 'pinia', 'vue-router'],
 				// eslint 全局配置
 				eslintrc: {
 					enabled: true,
@@ -90,7 +87,7 @@ export default defineConfig(({ mode }) => {
 		 * ! 打包配置
 		 */
 		build: {
-			sourcemap: !isProduction, // 源文件 便于定位bug
+			sourcemap: isDev, // 源文件 便于定位bug
 			outDir: diffMode.VITE_APP_OUTPUT_DIR,
 			rollupOptions: {
 				/**

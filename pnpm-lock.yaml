@@ -22,7 +22,7 @@ specifiers:
   rollup-plugin-visualizer: ^5.6.0
   typescript: ^4.6.2
   unplugin-auto-import: ^0.6.6
-  unplugin-vue-components: ^0.18.0
+  unplugin-vue-components: ^0.18.1
   vite: ^2.8.6
   vite-plugin-cdn-import: ^0.3.5
   vite-plugin-compression: ^0.5.1
@@ -56,7 +56,7 @@ devDependencies:
   rollup-plugin-visualizer: 5.6.0_rollup@2.70.1
   typescript: 4.6.2
   unplugin-auto-import: 0.6.6_rollup@2.70.1+vite@2.8.6
-  unplugin-vue-components: 0.18.0_26815477f7e405a320731e3af21dbb19
+  unplugin-vue-components: 0.18.1_26815477f7e405a320731e3af21dbb19
   vite: 2.8.6
   vite-plugin-cdn-import: 0.3.5_rollup@2.70.1
   vite-plugin-compression: 0.5.1_vite@2.8.6
@@ -3479,8 +3479,8 @@ packages:
       - webpack
     dev: true
 
-  /unplugin-vue-components/0.18.0_26815477f7e405a320731e3af21dbb19:
-    resolution: {integrity: sha512-qk4AgtsydOw1RoGjVlC9toBnq9U8UD8gORRbZjZoNV14c1n5+ZZXV1Hjf7ne6SCt/SROBxpK6Kh3iqL0d8ijpw==}
+  /unplugin-vue-components/0.18.1_26815477f7e405a320731e3af21dbb19:
+    resolution: {integrity: sha512-z+dY8LBf7fhlNNK30kSRnmOjc36pjOVF0pg/x2kPUko5iDOGKU2jTp4XOxvbqWzG1fFleCfFPwKYx1GhqYT+8Q==}
     engines: {node: '>=14'}
     peerDependencies:
       '@babel/parser': ^7.15.8

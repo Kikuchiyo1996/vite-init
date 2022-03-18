@@ -1,17 +1,18 @@
+<template>
+  <el-button type="primary">
+    primary
+    {{ test }}
+  </el-button>
+</template>
 <script setup lang="ts">
 import { useUserStore } from '@/store/user'
+
+const test = ref('123')
 
 const userStore = useUserStore()
 
 userStore.updateName('123')
 </script>
-
-<template>
-  <el-button type="primary">
-    primary
-  </el-button>
-</template>
-
 <style scoped>
 a {
 	color: #42b983;
