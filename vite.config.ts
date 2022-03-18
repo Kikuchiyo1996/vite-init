@@ -3,6 +3,8 @@ import vue from '@vitejs/plugin-vue'
 import { defineConfig, loadEnv } from 'vite'
 import compressPlugin from 'vite-plugin-compression'
 import { visualizer } from 'rollup-plugin-visualizer'
+import AutoImport from 'unplugin-auto-import/vite'
+import ViteComponents from 'unplugin-vue-components/vite'
 import importToCDN, { autoComplete } from 'vite-plugin-cdn-import'
 
 export default defineConfig(({ mode }) => {
@@ -59,6 +61,30 @@ export default defineConfig(({ mode }) => {
 					},
 				],
 			}),
+			/**
+			 * ! 自动导入组件
+			 */
+			AutoImport({
+				include: [
+					/\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+					/\.vue$/,
+					/\.vue\?vue/, // .vue
+					/\.md$/, // .md
+				],
+				dts: 'src/@types/auto-imports.d.ts',
+				imports: ['vue', 'vue-router'],
+				// eslint 全局配置
+				eslintrc: {
+					enabled: true,
+					filepath: 'src/@types/eslintrc-auto-import.json',
+					globalsPropValue: true,
+				},
+			}),
+			ViteComponents({
+				dirs: ['src/components'],
+				extensions: ['vue'],
+				dts: 'src/@types/components.d.ts',
+			}),
 		],
 		/**
 		 * ! 打包配置
@@ -68,12 +94,30 @@ export default defineConfig(({ mode }) => {
 			outDir: diffMode.VITE_APP_OUTPUT_DIR,
 			rollupOptions: {
 				/**
-				 * ! 打包输出文件目录
+				 * ! 打包输出文件目录和代码拆分
 				 */
 				output: {
 					chunkFileNames: 'static/js/[name]-[hash].js',
 					entryFileNames: 'static/js/[name]-[hash].js',
 					assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
+					manualChunks(id, { getModuleInfo }) {
+						// 这里可以按路由拆分
+						/* 	if (id.includes('src/router_a')) {
+							return 'router_a'
+						} */
+						// node_modules
+						if (id.includes('node_modules')) {
+							return 'vendor'
+						}
+						// 	被多处引用的组件
+						const reg = /(.*)\/src\/components\/(.*)/
+						if (reg.test(id)) {
+							const importersLen = getModuleInfo(id).importers.length
+							if (importersLen > 1) {
+								return 'common'
+							}
+						}
+					},
 				},
 			},
 		},

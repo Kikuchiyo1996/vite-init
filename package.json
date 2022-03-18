@@ -7,7 +7,7 @@
     "dev": "vite serve --mode development",
     "test": "vite serve --mode test",
     "prod": "vite serve --mode production",
-    "build:dev": "vue-tsc --noEmit && vite build --mode development",
+    "build:dev": "vite build --mode development",
     "build:test": "vue-tsc --noEmit && vite build --mode test",
     "build:prod": "vue-tsc --noEmit && vite build --mode production",
     "prepare": "husky install"
@@ -50,6 +50,8 @@
     "rollup": "^2.70.1",
     "rollup-plugin-visualizer": "^5.6.0",
     "typescript": "^4.6.2",
+    "unplugin-auto-import": "^0.6.6",
+    "unplugin-vue-components": "^0.18.0",
     "vite": "^2.8.6",
     "vite-plugin-cdn-import": "^0.3.5",
     "vite-plugin-compression": "^0.5.1",

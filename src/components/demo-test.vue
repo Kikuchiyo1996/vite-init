@@ -7,7 +7,9 @@ userStore.updateName('123')
 </script>
 
 <template>
-	<el-button type="primary">Primary</el-button>
+  <el-button type="primary">
+    primary
+  </el-button>
 </template>
 
 <style scoped>
