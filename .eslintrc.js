@@ -38,11 +38,12 @@ module.exports = {
 		'operator-linebreak': 'off', // 等号后的换行
 		'func-names': 'off', // 函数名校验
 		'linebreak-style': ['error', 'unix'], // 换行符号用LF
-		'import/extensions': ['error', { vue: 'ignorePackages', js: 'nerve' }], // 导入js和vue文件关闭后缀检验
 		'implicit-arrow-linebreak': 'off', // 箭头函数换行
 		'space-before-function-paren': 'off', // 函数定义时括号前面不要有空格
 		'function-paren-newline': 'off', // 函数括号换行
 		'vue/multi-word-component-names': 0, // 多单词命名检测
+		'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off', // console配置
+		'import/extensions': ['error', { vue: 'ignorePackages', js: 'nerve' }], // 导入js和vue文件关闭后缀检验
 		'no-unused-vars': ['error', { varsIgnorePattern: '.*', args: 'none' }], // TS变量定义未使用
 		'import/no-extraneous-dependencies': ['error', { devDependencies: ['**/*.config.ts'] }],
 	},

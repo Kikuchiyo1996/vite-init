@@ -13,8 +13,6 @@ export default defineConfig(({ mode }) => {
 	 */
 	const diffMode = loadEnv(mode, process.cwd())
 	const isDev = mode === 'development'
-	console.log(mode, isDev)
-
 	return {
 		base: diffMode.VITE_APP_PUBLIC_PATH,
 		plugins: [

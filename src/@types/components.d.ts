@@ -4,6 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ChangeLanguage: typeof import('./../components/change-language.vue')['default']
     DemoTest: typeof import('./../components/demo-test.vue')['default']
   }
 }

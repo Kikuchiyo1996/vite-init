@@ -1,17 +1,10 @@
 <template>
   <el-button type="primary">
-    primary
-    {{ test }}
+    {{ $t("header_menu.login") }}
   </el-button>
 </template>
 <script setup lang="ts">
-import { useUserStore } from '@/store/user'
 
-const test = ref('123')
-
-const userStore = useUserStore()
-
-userStore.updateName('123')
 </script>
 <style scoped>
 a {
