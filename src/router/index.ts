@@ -6,7 +6,7 @@ import { loginRouter } from './login'
 const routes: Array<RouteRecordRaw> = [
 	{
 		path: '/',
-		component: () => import('@components/change-language.vue'),
+		component: () => import('@/views/layout/nav-page.vue'),
 	},
 	...loginRouter,
 	{

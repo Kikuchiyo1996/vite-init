@@ -4,5 +4,8 @@ export default {
 		register: 'Register',
 		logout: 'Log out',
 	},
-
+	nav: {
+		mall: 'mall',
+		community: 'community',
+	},
 }

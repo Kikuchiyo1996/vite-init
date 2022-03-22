@@ -36,6 +36,11 @@ module.exports = {
 		camelcase: 'off', // 关闭驼峰检测
 		'no-tabs': 'off', // 不用tab
 		'no-plusplus': 'off', // 一元操作符
+		// vue 文件格式
+		'vue/html-indent': 'off',
+		'vue/html-self-closing': 'off',
+		'vue/max-attributes-per-line': 'off',
+		'vue/singleline-html-element-content-newline': 'off',
 		'no-unused-expressions': 0, // 三元和短路
 		'consistent-return': 'off', // 函数return必须一致
 		'object-curly-newline': 'off', // {}换行关闭

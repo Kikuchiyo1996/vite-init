@@ -7,7 +7,14 @@ import AutoImport from 'unplugin-auto-import/vite'
 import ViteComponents from 'unplugin-vue-components/vite'
 import importToCDN, { autoComplete } from 'vite-plugin-cdn-import'
 import viteImagemin from 'vite-plugin-imagemin'
-import { ElementPlusPath, ElementPlusCss, VueRouter, VueDemi, Pinia, VueI18n } from './src/cdn/index'
+import {
+	ElementPlusPath,
+	ElementPlusCss,
+	VueRouter,
+	VueDemi,
+	Pinia,
+	VueI18n,
+} from './src/cdn/index'
 
 export default defineConfig(({ mode }) => {
 	/**
@@ -34,35 +41,35 @@ export default defineConfig(({ mode }) => {
 				threshold: 5000,
 			}),
 			// ! 图片压缩
-				viteImagemin({
-					gifsicle: {
-						optimizationLevel: 7,
-						interlaced: false,
-					},
-					optipng: {
-						optimizationLevel: 7,
-					},
-					webp: {
-						quality: 75,
-					},
-					mozjpeg: {
-						quality: 65,
-					},
-					pngquant: {
-						quality: [0.65, 0.9],
-						speed: 4,
-					},
-					svgo: {
-						plugins: [
-							{
-								removeViewBox: false,
-							},
-							{
-								removeEmptyAttrs: false,
-							},
-						],
-					},
-				}),
+			viteImagemin({
+				gifsicle: {
+					optimizationLevel: 7,
+					interlaced: false,
+				},
+				optipng: {
+					optimizationLevel: 7,
+				},
+				webp: {
+					quality: 75,
+				},
+				mozjpeg: {
+					quality: 65,
+				},
+				pngquant: {
+					quality: [0.65, 0.9],
+					speed: 4,
+				},
+				svgo: {
+					plugins: [
+						{
+							removeViewBox: false,
+						},
+						{
+							removeEmptyAttrs: false,
+						},
+					],
+				},
+			}),
 			/**
 			 * ! CDN引入并排除打包
 			 */
@@ -175,7 +182,7 @@ export default defineConfig(({ mode }) => {
 			host: true,
 			https: true,
 			/* proxy: {
-				'/api':diffMode.VITE_APP_BASE_URL,
+				'/apis': 'http://152.136.185.210:5000/',
 			}, */
 		},
 	}

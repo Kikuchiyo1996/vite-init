@@ -1,11 +1,10 @@
 <template>
-  <div class="login">
-    <LoginPanel />
-  </div>
+	<div class="login">
+		<LoginPanel />
+	</div>
 </template>
 
 <script setup lang="ts" name="Login">
-
 import { useMainStore, useLoginStore } from '@/store'
 import { storeToRefs } from 'pinia'
 import LoginPanel from './components/login-panel.vue'
@@ -21,11 +20,11 @@ console.log(maininfo.value, logininfo.value)
 
 <style lang="scss" scoped>
 .login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background: url('@/assets/login/login-bg.svg');
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	background: url('@/assets/login/login-bg.svg');
 }
 </style>
