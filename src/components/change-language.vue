@@ -15,13 +15,10 @@
       <el-button>Delete</el-button>
     </template>
   </el-popconfirm>
-  <img
-    src="@/assets/4k.jpg"
-  >
 </template>
 <script setup lang="ts">
 import { reactive } from 'vue'
-import langStore from '@/store/lang/lang'
+import langStore from '@/store/lang'
 
 const allLanguages = reactive(['cn', 'en'])
 

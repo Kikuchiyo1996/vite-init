@@ -1,12 +1,14 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import { loginRouter } from './login'
 
 const routes: Array<RouteRecordRaw> = [
 	{
 		path: '/',
 		component: () => import('@components/change-language.vue'),
 	},
+	...loginRouter,
 	{
 		path: '/404',
 		component: () => import('@/views/error-page/404.vue'),
@@ -17,6 +19,7 @@ const routes: Array<RouteRecordRaw> = [
 	},
 	{
 		path: '/:pathMatch(.*)*',
+		redirect: '/404',
 	},
 ]
 

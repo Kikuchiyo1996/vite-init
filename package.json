@@ -25,6 +25,9 @@
       "eslint --fix"
     ]
   },
+  "resolutions": {
+    "bin-wrapper": "npm:bin-wrapper-china"
+  },
   "dependencies": {
     "axios": "^0.26.1",
     "element-plus": "^2.1.3",
@@ -60,6 +63,7 @@
     "vite": "^2.8.6",
     "vite-plugin-cdn-import": "^0.3.5",
     "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-imagemin": "^0.6.1",
     "vue-tsc": "^0.29.8"
   }
 }
