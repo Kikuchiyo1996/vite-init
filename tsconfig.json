@@ -23,12 +23,19 @@
 		// 编译过程中需要引入的库文件
 		"lib": ["esnext", "dom"],
 		"skipLibCheck": true, // 针对element-puls的ts打包校验
-		"types": ["element-plus/global"],
+		"types": ["element-plus/global", "node"],
 		"paths": {
-			"@/*": ["src/*"] // 相对位置需要配置baseUrl才能识别，否则会报错
+			"@/*": ["src/*"],
+			"@components/*": ["src/components/*"],
+			"@utils/*": ["src/utils/*"]
 		},
 		"useDefineForClassFields": true
 	},
-	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-	"references": [{ "path": "./tsconfig.node.json" }]
+	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/cdn"],
+	"exclude": ["node_modules"],
+	"references": [
+		{
+			"path": "./tsconfig.node.json"
+		}
+	]
 }

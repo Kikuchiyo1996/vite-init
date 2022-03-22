@@ -6,6 +6,8 @@ import { visualizer } from 'rollup-plugin-visualizer'
 import AutoImport from 'unplugin-auto-import/vite'
 import ViteComponents from 'unplugin-vue-components/vite'
 import importToCDN, { autoComplete } from 'vite-plugin-cdn-import'
+import viteImagemin from 'vite-plugin-imagemin'
+import { ElementPlusPath, ElementPlusCss, VueRouter, VueDemi, Pinia, VueI18n } from './src/cdn/index'
 
 export default defineConfig(({ mode }) => {
 	/**
@@ -21,7 +23,7 @@ export default defineConfig(({ mode }) => {
 			 * ! 打包分析
 			 */
 			visualizer({
-				open: true,
+				open: false,
 				gzipSize: true,
 				brotliSize: true,
 			}),
@@ -31,6 +33,36 @@ export default defineConfig(({ mode }) => {
 			compressPlugin({
 				threshold: 5000,
 			}),
+			// ! 图片压缩
+				viteImagemin({
+					gifsicle: {
+						optimizationLevel: 7,
+						interlaced: false,
+					},
+					optipng: {
+						optimizationLevel: 7,
+					},
+					webp: {
+						quality: 75,
+					},
+					mozjpeg: {
+						quality: 65,
+					},
+					pngquant: {
+						quality: [0.65, 0.9],
+						speed: 4,
+					},
+					svgo: {
+						plugins: [
+							{
+								removeViewBox: false,
+							},
+							{
+								removeEmptyAttrs: false,
+							},
+						],
+					},
+				}),
 			/**
 			 * ! CDN引入并排除打包
 			 */
@@ -41,23 +73,28 @@ export default defineConfig(({ mode }) => {
 					{
 						name: 'element-plus',
 						var: 'ElementPlus',
-						path: 'https://cdn.jsdelivr.net/npm/element-plus@2.1.3/dist/index.full.min.js',
-						css: 'https://cdn.jsdelivr.net/npm/element-plus@2.1.3/dist/index.min.css',
+						path: ElementPlusPath,
+						css: ElementPlusCss,
 					},
 					{
 						name: 'vue-router',
 						var: 'VueRouter',
-						path: 'https://cdn.jsdelivr.net/npm/vue-router@4.0.14/dist/vue-router.global.prod.min.js',
+						path: VueRouter,
 					},
 					{
 						name: 'vue-demi',
 						var: 'VueDemi',
-						path: 'https://cdn.jsdelivr.net/npm/vue-demi@0.12.1/lib/index.iife.min.js',
+						path: VueDemi,
 					},
 					{
 						name: 'pinia',
 						var: 'Pinia',
-						path: 'https://cdn.jsdelivr.net/npm/pinia@2.0.12/dist/pinia.iife.min.js',
+						path: Pinia,
+					},
+					{
+						name: 'vue-i18n',
+						var: 'VueI18n',
+						path: VueI18n,
 					},
 				],
 			}),
@@ -67,7 +104,7 @@ export default defineConfig(({ mode }) => {
 			AutoImport({
 				include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
 				dts: 'src/@types/auto-imports.d.ts',
-				imports: ['vue', 'pinia', 'vue-router'],
+				imports: ['pinia', 'vue-router'],
 				// eslint 全局配置
 				eslintrc: {
 					enabled: true,
@@ -85,8 +122,10 @@ export default defineConfig(({ mode }) => {
 		 * ! 打包配置
 		 */
 		build: {
-			sourcemap: isDev, // 源文件 便于定位bug
+			sourcemap: true, // 源文件 便于定位bug
 			outDir: diffMode.VITE_APP_OUTPUT_DIR,
+			cssCodeSplit: true, // 分割css
+			assetsInlineLimit: 4096, // 小于此阈值的导入或引用资源将内联为 base64 编码，以避免额外的 http 请求。设置为 0 可以完全禁用此项
 			rollupOptions: {
 				/**
 				 * ! 打包输出文件目录和代码拆分
@@ -122,6 +161,8 @@ export default defineConfig(({ mode }) => {
 		resolve: {
 			alias: {
 				'@': resolve(__dirname, 'src'),
+				'@components': resolve(__dirname, 'src/components'),
+				'@utils': resolve(__dirname, 'src/utils'),
 			},
 			extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
 		},

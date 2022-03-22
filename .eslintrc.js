@@ -3,6 +3,7 @@ module.exports = {
 		browser: true,
 		es2021: true,
 		node: true,
+		'vue/setup-compiler-macros': true,
 	},
 	extends: ['plugin:vue/vue3-recommended', 'airbnb-base', './src/@types/eslintrc-auto-import.json'],
 	parserOptions: {
@@ -14,7 +15,11 @@ module.exports = {
 	settings: {
 		'import/resolver': {
 			alias: {
-				map: [['@', './src']],
+				map: [
+					['@', './src'],
+					['@utils', './src/utils'],
+					['@components', './src/components'],
+				],
 				extensions: ['.ts', '.js', '.jsx', '.json'],
 			},
 		},
@@ -46,5 +51,6 @@ module.exports = {
 		'import/extensions': ['error', { vue: 'ignorePackages', js: 'nerve' }], // 导入js和vue文件关闭后缀检验
 		'no-unused-vars': ['error', { varsIgnorePattern: '.*', args: 'none' }], // TS变量定义未使用
 		'import/no-extraneous-dependencies': ['error', { devDependencies: ['**/*.config.ts'] }],
+		'import/prefer-default-export': 'off', // 关闭首选默认导出
 	},
 }

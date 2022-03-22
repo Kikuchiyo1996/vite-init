@@ -1,0 +1,33 @@
+body {
+	padding: 0;
+	margin: 0;
+}
+
+html,
+body,
+#app {
+	width: 100%;
+	height: 100%;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+p {
+	margin: 0;
+	padding: 0;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #bfbfbf;
+	border-radius: 10px;
+}
+
+.placeholder {
+	color: #c8c9cc;
+}
+
+img {
+	image-rendering: pixelated;
+}

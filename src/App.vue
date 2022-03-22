@@ -4,8 +4,8 @@
   </el-config-provider>
 </template>
 <script lang="ts" setup>
-import langStore from '@/store/lang'
 import { storeToRefs } from 'pinia'
+import langStore from '@/store/lang'
 
 const { languagePackCache } = storeToRefs(langStore())
 

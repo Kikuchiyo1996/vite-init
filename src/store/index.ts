@@ -1,5 +1,5 @@
-import { createPinia } from 'pinia'
+import { useLoginStore } from './login'
+import { useMainStore } from './main'
 
-const store = createPinia()
+export { useLoginStore, useMainStore }
 
-export default store
