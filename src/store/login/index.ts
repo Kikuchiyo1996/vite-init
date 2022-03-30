@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { accountLoginRequest } from '@/axios/login'
-import { IAccount } from '@/axios/login/type'
+import { accountLoginRequest } from '@/axios/api/login'
+import { IAccount } from '@/axios/api/login/type'
 
 // 1. 定义容器、导出容器
 

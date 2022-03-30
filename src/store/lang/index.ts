@@ -1,24 +1,22 @@
 import { defineStore } from 'pinia'
-
-import cn from 'element-plus/es/locale/lang/zh-cn'
+import zh from 'element-plus/es/locale/lang/zh-cn'
 import en from 'element-plus/es/locale/lang/en'
 
-export default defineStore({
-	id: 'lang',
+export const useLangStore = defineStore('lang', {
 	state: () => ({
-		currentLang: 'cn',
-		languagePack: cn,
+		currentLang: 'zh',
+		languagePack: zh,
 		languages: [
 			{
-				name: 'cn',
-				languagePack: cn,
+				name: 'zh',
+				languagePack: zh,
 			},
 			{
 				name: 'en',
 				languagePack: en,
 			},
 		],
-		}),
+	}),
 	actions: {
 		// 切换语言包
 		changGlobalLang(val: string) {

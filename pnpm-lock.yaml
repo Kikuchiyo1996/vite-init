@@ -4,6 +4,8 @@ overrides:
   bin-wrapper: npm:bin-wrapper-china
 
 specifiers:
+  '@element-plus/icons': ^0.0.11
+  '@element-plus/icons-vue': ^1.1.4
   '@types/lodash-es': ^4.17.6
   '@types/node': ^17.0.21
   '@types/nprogress': ^0.2.0
@@ -16,14 +18,16 @@ specifiers:
   element-plus: ^2.1.3
   eslint: ^8.11.0
   eslint-config-airbnb-base: ^15.0.0
+  eslint-config-prettier: ^8.5.0
   eslint-import-resolver-alias: ^1.1.2
   eslint-plugin-import: ^2.25.4
   eslint-plugin-vue: ^8.5.0
   husky: ^7.0.4
-  lint-staged: ^12.3.5
+  lint-staged: ^12.3.7
   normalize.css: ^8.0.1
   nprogress: ^0.2.0
   pinia: 2.0.12
+  prettier: ^2.6.0
   rollup: ^2.70.1
   rollup-plugin-visualizer: ^5.6.0
   sass: ^1.49.9
@@ -38,8 +42,11 @@ specifiers:
   vue-i18n: ^9.2.0-beta.32
   vue-router: 4.0.14
   vue-tsc: ^0.29.8
+  vue-wechat-title: ^2.0.7
 
 dependencies:
+  '@element-plus/icons': 0.0.11
+  '@element-plus/icons-vue': 1.1.4_vue@3.2.31
   axios: 0.26.1
   element-plus: 2.1.4_1a412d14def5ff5ca1122000e4bee666
   normalize.css: 8.0.1
@@ -48,6 +55,7 @@ dependencies:
   vue: 3.2.31
   vue-i18n: 9.2.0-beta.32_vue@3.2.31
   vue-router: 4.0.14_vue@3.2.31
+  vue-wechat-title: 2.0.7
 
 devDependencies:
   '@types/lodash-es': 4.17.6
@@ -60,11 +68,13 @@ devDependencies:
   cz-git: 1.2.1_commitizen@4.2.4
   eslint: 8.11.0
   eslint-config-airbnb-base: 15.0.0_fe22d862ffeecaee86c93a006d59e41e
+  eslint-config-prettier: 8.5.0_eslint@8.11.0
   eslint-import-resolver-alias: 1.1.2_eslint-plugin-import@2.25.4
   eslint-plugin-import: 2.25.4_eslint@8.11.0
   eslint-plugin-vue: 8.5.0_eslint@8.11.0
   husky: 7.0.4
   lint-staged: 12.3.7
+  prettier: 2.6.0
   rollup: 2.70.1
   rollup-plugin-visualizer: 5.6.0_rollup@2.70.1
   sass: 1.49.9
@@ -224,6 +234,11 @@ packages:
       vue: ^3.2.0
     dependencies:
       vue: 3.2.31
+    dev: false
+
+  /@element-plus/icons/0.0.11:
+    resolution: {integrity: sha512-iKQXSxXu131Ai+I9Ymtcof9WId7kaXvB1+WRfAfpQCW7UiAMYgdNDqb/u0hgTo2Yq3MwC4MWJnNuTBEpG8r7+A==}
+    deprecated: Please use @element-plus/icons-vue instead.
     dev: false
 
   /@emmetio/abbreviation/2.2.3:
@@ -1612,7 +1627,7 @@ packages:
       decompress-tarbz2: 4.1.1
       decompress-targz: 4.1.1
       decompress-unzip: 4.0.1
-      graceful-fs: 4.2.9
+      graceful-fs: registry.npmmirror.com/graceful-fs/4.2.9
       make-dir: 1.3.0
       pify: 2.3.0
       strip-dirs: 2.1.0
@@ -2082,6 +2097,15 @@ packages:
       object.assign: 4.1.2
       object.entries: 1.1.5
       semver: 6.3.0
+    dev: true
+
+  /eslint-config-prettier/8.5.0_eslint@8.11.0:
+    resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
+    hasBin: true
+    peerDependencies:
+      eslint: '>=7.0.0'
+    dependencies:
+      eslint: 8.11.0
     dev: true
 
   /eslint-import-resolver-alias/1.1.2_eslint-plugin-import@2.25.4:
@@ -3534,7 +3558,7 @@ packages:
     dependencies:
       graceful-fs: 4.2.9
       parse-json: 2.2.0
-      pify: 2.3.0
+      pify: registry.npmmirror.com/pify/2.3.0
       pinkie-promise: 2.0.1
       strip-bom: 2.0.0
     dev: true
@@ -4145,7 +4169,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       graceful-fs: 4.2.9
-      pify: 2.3.0
+      pify: registry.npmmirror.com/pify/2.3.0
       pinkie-promise: 2.0.1
     dev: true
 
@@ -4253,6 +4277,12 @@ packages:
   /prepend-http/2.0.0:
     resolution: {integrity: sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=}
     engines: {node: '>=4'}
+    dev: true
+
+  /prettier/2.6.0:
+    resolution: {integrity: sha512-m2FgJibYrBGGgQXNzfd0PuDGShJgRavjUoRCw1mZERIWVSXF0iLzLm+aOqTAbLnC3n6JzUhAA8uZnFVghHJ86A==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
     dev: true
 
   /process-nextick-args/2.0.1:
@@ -5587,6 +5617,10 @@ packages:
       vscode-vue-languageservice: 0.29.8
     dev: true
 
+  /vue-wechat-title/2.0.7:
+    resolution: {integrity: sha512-qNkb56AWFHjOoGfW4lkstS4GC2W4YqVJYfnIUM73b/CBpMSOvcWSqtmb8ANa9owTKJr2dmBRmQV5K5YwrzbC5A==}
+    dev: false
+
   /vue/3.2.31:
     resolution: {integrity: sha512-odT3W2tcffTiQCy57nOT93INw1auq5lYLLYtWpPYQQYQOOdHiqFct9Xhna6GJ+pJQaF67yZABraH47oywkJgFw==}
     dependencies:
@@ -5714,4 +5748,17 @@ packages:
   /yn/3.1.1:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
+    dev: true
+
+  registry.npmmirror.com/graceful-fs/4.2.9:
+    resolution: {integrity: sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/graceful-fs/-/graceful-fs-4.2.9.tgz}
+    name: graceful-fs
+    version: 4.2.9
+    dev: true
+
+  registry.npmmirror.com/pify/2.3.0:
+    resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pify/-/pify-2.3.0.tgz}
+    name: pify
+    version: 2.3.0
+    engines: {node: '>=0.10.0'}
     dev: true

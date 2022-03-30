@@ -1,19 +1,19 @@
 // service统一出口
-import CMRequest from './api/index'
+import Request from './request'
 
-// console.log(import.meta.env.VITE_APP_API_URL)
-
-const cmRequest = new CMRequest({
-	// baseURL: import.meta.env.VITE_APP_API_URL,
-	baseURL: 'http://127.0.0.1:4523/mock/413172',
-	timeout: 1000,
+const cmRequest = new Request({
+	baseURL: import.meta.env.VITE_APP_API_URL,
+	timeout: 5000,
 	interceptors: {
-		requestInterceptor: (config) =>
+		requestInterceptor: (config) => {
+			const axiosConfig = config
+			const token = localStorage.getItem('token')
 			// ! 携带token的拦截
-			/* if (token && config.headers) {
-        config.headers.Authorization = `Bearer ${token}`
-      } */
-			config,
+			if (token && axiosConfig.headers) {
+				axiosConfig.headers.Authorization = `Bearer ${token}`
+			}
+			return axiosConfig
+		},
 		requestInterceptorCatch: (err) => err,
 		responseInterceptor: (res) => res,
 		responseInterceptorCatch: (err) => err,

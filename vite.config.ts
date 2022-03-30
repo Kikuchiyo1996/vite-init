@@ -3,26 +3,19 @@ import vue from '@vitejs/plugin-vue'
 import { defineConfig, loadEnv } from 'vite'
 import compressPlugin from 'vite-plugin-compression'
 import { visualizer } from 'rollup-plugin-visualizer'
-import AutoImport from 'unplugin-auto-import/vite'
+// import AutoImport from 'unplugin-auto-import/vite'
 import ViteComponents from 'unplugin-vue-components/vite'
 import importToCDN, { autoComplete } from 'vite-plugin-cdn-import'
 import viteImagemin from 'vite-plugin-imagemin'
-import {
-	ElementPlusPath,
-	ElementPlusCss,
-	VueRouter,
-	VueDemi,
-	Pinia,
-	VueI18n,
-} from './src/cdn/index'
+import { ElementPlusPath, ElementPlusCss, VueRouter, VueDemi, Pinia, VueI18n } from './src/cdn/index'
 
-export default defineConfig(({ mode }) => {
-	/**
-	 * ! 环境变量
-	 */
+export default ({ mode }) => {
 	const diffMode = loadEnv(mode, process.cwd())
 	const isDev = mode === 'development'
-	return {
+	return defineConfig({
+		/**
+		 * ! 环境变量
+		 */
 		base: diffMode.VITE_APP_PUBLIC_PATH,
 		plugins: [
 			vue(),
@@ -41,35 +34,34 @@ export default defineConfig(({ mode }) => {
 				threshold: 5000,
 			}),
 			// ! 图片压缩
-			viteImagemin({
-				gifsicle: {
-					optimizationLevel: 7,
-					interlaced: false,
-				},
-				optipng: {
-					optimizationLevel: 7,
-				},
-				webp: {
-					quality: 75,
-				},
-				mozjpeg: {
-					quality: 65,
-				},
-				pngquant: {
-					quality: [0.65, 0.9],
-					speed: 4,
-				},
-				svgo: {
-					plugins: [
-						{
-							removeViewBox: false,
-						},
-						{
-							removeEmptyAttrs: false,
-						},
-					],
-				},
-			}),
+			!isDev &&
+				viteImagemin({
+					gifsicle: {
+						optimizationLevel: 7,
+						interlaced: false,
+					},
+					optipng: {
+						optimizationLevel: 7,
+					},
+					mozjpeg: {
+						quality: 20,
+					},
+					pngquant: {
+						quality: [0.8, 0.9],
+						speed: 4,
+					},
+					svgo: {
+						plugins: [
+							{
+								name: 'removeViewBox',
+							},
+							{
+								name: 'removeEmptyAttrs',
+								active: false,
+							},
+						],
+					},
+				}),
 			/**
 			 * ! CDN引入并排除打包
 			 */
@@ -108,28 +100,27 @@ export default defineConfig(({ mode }) => {
 			/**
 			 * ! 自动导入组件
 			 */
-			AutoImport({
+			/* 			AutoImport({
 				include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
-				dts: 'src/@types/auto-imports.d.ts',
-				imports: ['pinia', 'vue-router'],
-				// eslint 全局配置
+				dts: 'src/types/auto-imports.d.ts',
+				imports: ['vue-router','pinia', ],
 				eslintrc: {
 					enabled: true,
-					filepath: 'src/@types/eslintrc-auto-import.json',
+					filepath: 'src/types/eslintrc-auto-import.json',
 					globalsPropValue: true,
 				},
-			}),
+			}), */
 			ViteComponents({
 				dirs: ['src/components'],
 				extensions: ['vue'],
-				dts: 'src/@types/components.d.ts',
+				dts: 'src/types/components.d.ts',
 			}),
 		],
 		/**
 		 * ! 打包配置
 		 */
 		build: {
-			sourcemap: true, // 源文件 便于定位bug
+			sourcemap: isDev, // 源文件 便于定位bug
 			outDir: diffMode.VITE_APP_OUTPUT_DIR,
 			cssCodeSplit: true, // 分割css
 			assetsInlineLimit: 4096, // 小于此阈值的导入或引用资源将内联为 base64 编码，以避免额外的 http 请求。设置为 0 可以完全禁用此项
@@ -141,6 +132,7 @@ export default defineConfig(({ mode }) => {
 					chunkFileNames: 'static/js/[name]-[hash].js',
 					entryFileNames: 'static/js/[name]-[hash].js',
 					assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
+					// eslint-disable-next-line consistent-return
 					manualChunks(id, { getModuleInfo }) {
 						// 这里可以按路由拆分
 						/* 	if (id.includes('src/router_a')) {
@@ -181,9 +173,13 @@ export default defineConfig(({ mode }) => {
 			open: true,
 			host: true,
 			https: true,
-			/* proxy: {
-				'/apis': 'http://152.136.185.210:5000/',
-			}, */
+			proxy: {
+				'/api': {
+					target: 'http://127.0.0.1:4523/mock/768643/',
+					changeOrigin: true,
+					rewrite: (path) => path.replace(/^\/api/, ''),
+				},
+			},
 		},
-	}
-})
+	})
+}

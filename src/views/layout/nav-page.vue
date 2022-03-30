@@ -19,9 +19,10 @@
 	</nav>
 </template>
 <script setup lang="ts">
-import '@/components/change-language.vue'
+import ChangeLanguage from '@/components/change-language.vue'
 </script>
-<style lang="scss">
+
+<style scoped lang="scss">
 ul {
 	display: flex;
 	justify-content: center;

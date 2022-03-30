@@ -14,8 +14,6 @@ const loginStore = useLoginStore()
 
 const { info: maininfo } = storeToRefs(mainStore) // 结构pinia数据并成响应式
 const { info: logininfo } = storeToRefs(loginStore) // 结构pinia数据并成响应式
-
-console.log(maininfo.value, logininfo.value)
 </script>
 
 <style lang="scss" scoped>
